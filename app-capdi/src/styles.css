@@ -1,4 +1,19 @@
-/* Global styles */
+/* ===== CSS VARIABLES (global) ===== */
+:root {
+  --blue-primary:    #1d4ed8;
+  --blue-hover:      #1e40af;
+  --cream-bg:        #f5ede0;
+  --about-bg:        #ddeaf8;
+  --text-dark:       #111827;
+  --text-medium:     #374151;
+  --text-light:      #6b7280;
+  --coral:           #e05c38;
+  --red-accent:      #b91c1c;
+  --white:           #ffffff;
+  --font-main:       'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== RESET & BASE ===== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -8,11 +23,20 @@
 html, body {
   height: 100%;
   font-size: 16px;
-  scroll-behavior: smooth;
+}
+
+/* Smooth scroll solo si el usuario no prefiere reducir movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  line-height: 1.6;
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
 }
 
