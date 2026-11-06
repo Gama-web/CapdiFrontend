@@ -1,30 +1,5 @@
-/* ===== RESET & BASE ===== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --blue-primary:    #1d4ed8;
-  --blue-hover:      #1e40af;
-  --cream-bg:        #f5ede0;
-  --about-bg:        #ddeaf8;
-  --text-dark:       #111827;
-  --text-medium:     #374151;
-  --text-light:      #6b7280;
-  --coral:           #e05c38;
-  --red-accent:      #b91c1c;
-  --white:           #ffffff;
-  --font-main:       'Segoe UI', system-ui, -apple-system, sans-serif;
-}
-
-body {
-  font-family: var(--font-main);
-  color: var(--text-dark);
-  line-height: 1.6;
-  background: var(--white);
-}
+/* ===== BASE ===== */
+/* Variables y reset global en styles.css */
 
 .container {
   max-width: 1200px;
@@ -56,7 +31,7 @@ body {
 }
 
 .btn-outline {
-  background: transparent;
+  background: var(--white);
   color: var(--blue-primary);
   border: 2px solid var(--blue-primary);
 }
@@ -71,6 +46,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+  background: #ffffff;           /* fallback explícito */
   background: var(--white);
   border-bottom: 1px solid #e5e7eb;
   padding: 1rem 0;
@@ -116,85 +92,66 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
-  background: var(--cream-bg);
-  padding: 5rem 0 4rem;
-  overflow: hidden;
+  position: relative;
+  padding: 8rem 0 5rem;
+  background-image: url('/images/sections/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 3rem;
+/* Overlay oscuro para que el texto sea legible sobre la imagen */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.541);
+  z-index: 0;
 }
 
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+/* El contenido debe quedar por encima del overlay */
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
 }
 
 .brand-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-medium);
-  letter-spacing: 0.01em;
-}
-
-.hero-title {
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
 }
 
 .hero-desc {
   font-size: 1rem;
-  color: var(--text-light);
-  max-width: 520px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 680px;
+  margin-bottom: 1.25rem;
 }
 
 .hero-tagline {
   font-size: 0.95rem;
   font-style: italic;
   font-weight: 600;
-  color: var(--text-medium);
-  border-left: 3px solid var(--blue-primary);
+  color: rgba(255, 255, 255, 0.9);
+  border-left: 3px solid #ffffff;
   padding-left: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .btn-group {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-
-/* Hero visual — geometric circle */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-circle {
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: var(--coral);
-  opacity: 0.85;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-circle-inner {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c4440c 0%, #e07050 100%);
-  opacity: 0.6;
 }
 
 /* ===== ABOUT SECTION ===== */
@@ -280,12 +237,10 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .hero-grid,
   .about-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-visual,
   .about-visual {
     display: none;
   }
